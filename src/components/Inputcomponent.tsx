@@ -27,6 +27,7 @@ const Inputcomponent = () => {
           _placeholder={{ fontSize: "14px" }}
           fontSize="14px"
           borderColor="#E4E8EE"
+          _focus={{ borderColor: "#2DA958" }}
           value={inputValue}
           onChange={handleChange}
           onKeyDown={handleKeyDown}

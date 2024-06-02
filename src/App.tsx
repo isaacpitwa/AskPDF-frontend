@@ -4,6 +4,7 @@ import Inputcomponent from "./components/Inputcomponent";
 import ChatMessage from "./components/ChatMessage";
 import { ChatContext } from "./providers/ChatProvider";
 import { useContext } from "react";
+import EmptyMessages from "./components/EmptyMessages";
 
 function App() {
   const { messages } = useContext(ChatContext);
@@ -19,6 +20,7 @@ function App() {
                 message={message.text}
               />
             ))}
+            {messages.length === 0 && (<EmptyMessages/>)}
           </Box>
           <Inputcomponent />
         </Box>
