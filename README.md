@@ -1,6 +1,30 @@
-# Getting Started with Create React App
+# AskPDF Front end
+> AskPDF allows users to upload PDF documents, ask questions related to the content of these documents, and receive answers based on natural language processing.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+You can view the live AskPDF at [https://askpdf-fe.netlify.app/](https://askpdf-fe.netlify.app/)
+
+## Folder Structure
+
+The workspace contains two folders by default, where:
+
+- `src`: the folder to maintain sources
+- `public`: the folder to maintain public assets
+
+Inside the `src` directory, the code is structured as follows:
+
+- `components`: This directory will contain all the common component files, which can be reused throughout the project.
+- `views`: This directory will contain all the domain-specific component files. Each domain will have a separate folder.
+- `contexts`: This directory will contain all the context files.
+- `services`: This directory will contain all the service files.
+
+## Development Setup
+
+To set up the development environment for AskPDF, follow these steps:
+
+1. Clone the repository to your local machine.
+2. Navigate to the project directory.
+3. Install all the necessary packages and dependencies using `npm install`.
+4. Start the development server using `npm start`.
 
 ## Available Scripts
 
@@ -11,36 +35,31 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the test runner in the interactive watch mode.
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Builds the app for production to the `build` folder.
 
 ### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Available Features
+- **PDF Upload**: Users can upload PDF documents to the application.
+- **Asking Questions**: Users can ask questions related to the content of uploaded PDFs.
+- **Displaying Answers**: The application displays answers to user questions based on natural language processing.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Design Preview
+For an overview of the application's design, please refer to the [Figma design](https://www.figma.com/file/QHpASp7wGRRcjh0oxCuspL/FullStack-Engineer-Internship-Assignment?type=design&node-id=0-1&mode=design&t=geu9rfpXEecN8eFZ-0).
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Author
 
-## Learn More
+👤 **Isaac Pitwa**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- GitHub: [@isaacpitwa](https://github.com/isaacpitwa)
+- Twitter: [@isaacpitwa](https://twitter.com/isaacpitwa)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/isaac-pitwa)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
