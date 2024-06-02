@@ -1,11 +1,11 @@
-import { Box, Input, InputGroup, InputRightElement } from "@chakra-ui/react";
+import { Box, Input, InputGroup, InputRightElement, Spinner } from "@chakra-ui/react";
 import React, {useState,useContext} from "react";
 import { BiSend } from "react-icons/bi";
 import { ChatContext } from "../providers/ChatProvider";
 
 const Inputcomponent = () => {
   const [inputValue, setInputValue] = useState("");
-  const {addMessage, isFileSelected} =  useContext(ChatContext);
+  const {addMessage, isFileSelected,isFectchingAnswer} =  useContext(ChatContext);
 
   const handleKeyDown = (event:React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
@@ -34,7 +34,7 @@ const Inputcomponent = () => {
           disabled={!isFileSelected}
         />
         <InputRightElement>
-          <BiSend size={21} color="#ACACAE" />
+          {isFectchingAnswer ? <Spinner size="sm" color="#2DA958"/>:<BiSend size={21} color="#ACACAE" />}
         </InputRightElement>
       </InputGroup>
     </Box>

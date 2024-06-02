@@ -5,6 +5,7 @@ const initialChatState = {
   messages: [] as { text: string; isQuestion: boolean }[],
   isFileSelected: false,
   isUploadingFile: false,
+  isFectchingAnswer: false,
   addMessage: (message: string, isQuestion: boolean) => {},
   addFile: (file: File) => {},
 };
@@ -20,9 +21,20 @@ const ChatProvider: React.FC<{ children: React.ReactNode }> = ({
   const addMessage = (message: string, isQuestion: boolean) => {
     setChatState((prevState) => ({
       ...prevState,
+      isFectchingAnswer: isQuestion,
       messages: [...prevState.messages, { text: message, isQuestion }],
     }));
-    console.log("Message added: ", message);
+
+    // TODO:: send message to API
+    if(isQuestion){
+      setTimeout(() => {
+        setChatState((prevState) => ({
+          ...prevState,
+            isFectchingAnswer: false,
+          messages: [...prevState.messages, { text: "This is a dummy answer", isQuestion: false }],
+        }));
+      }, 2000);
+    }
   };
 
   const addFile = (file: File) => {
