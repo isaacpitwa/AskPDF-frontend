@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react";
+import { ApiService } from "../services/ApiService";
 
 // State to hold the chat messages and file selection
 const initialChatState = {
@@ -8,6 +9,7 @@ const initialChatState = {
   isFectchingAnswer: false,
   addMessage: (message: string, isQuestion: boolean) => {},
   addFile: (file: File) => {},
+  pdf_id: 0,
 };
 
 export const ChatContext = createContext(initialChatState);
@@ -26,14 +28,25 @@ const ChatProvider: React.FC<{ children: React.ReactNode }> = ({
     }));
 
     // TODO:: send message to API
-    if(isQuestion){
-      setTimeout(() => {
+    if (isQuestion) {
+      console.log("PDF ID: ", chatState.pdf_id)
+      ApiService.ask(message,chatState.pdf_id).then((response)=>{
         setChatState((prevState) => ({
           ...prevState,
-            isFectchingAnswer: false,
-          messages: [...prevState.messages, { text: "This is a dummy answer", isQuestion: false }],
+          isFectchingAnswer: false,
+          messages: [
+            ...prevState.messages,
+            { text: response.answer, isQuestion: false },
+          ],
         }));
-      }, 2000);
+      
+      }).catch((error) => {
+        console.error("An error occurred while asking the question:", error);
+        setChatState((prevState) => ({
+          ...prevState,
+          isFectchingAnswer: false,
+        }));
+      });
     }
   };
 
@@ -43,14 +56,23 @@ const ChatProvider: React.FC<{ children: React.ReactNode }> = ({
       isUploadingFile: true,
     }));
     // TODO:: updload file to API
-    setTimeout(() => {
-      setChatState((prevState) => ({
-        ...prevState,
-        isFileSelected: true,
-        isUploadingFile: false,
-      }));
-      console.log("File added: ", file.name);
-    }, 4000);
+    ApiService.uploadPDF(file)
+      .then((response) => {
+        console.log("File uploaded: ", response);
+        setChatState((prevState) => ({
+          ...prevState,
+          isFileSelected: true,
+          isUploadingFile: false,
+          pdf_id: response.id,
+        }));
+      })
+      .catch((error) => {
+        console.error("An error occurred while uploading the file:", error);
+        setChatState((prevState) => ({
+          ...prevState,
+          isUploadingFile: false,
+        }));
+      });
   };
 
   // Provide the chat context value to the children components
