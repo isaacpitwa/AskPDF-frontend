@@ -5,7 +5,7 @@ import { ChatContext } from "../providers/ChatProvider";
 
 const Inputcomponent = () => {
   const [inputValue, setInputValue] = useState("");
-  const {addMessage} =  useContext(ChatContext);
+  const {addMessage, isFileSelected} =  useContext(ChatContext);
 
   const handleKeyDown = (event:React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
@@ -30,6 +30,7 @@ const Inputcomponent = () => {
           value={inputValue}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
+          disabled={!isFileSelected}
         />
         <InputRightElement>
           <BiSend size={21} color="#ACACAE" />

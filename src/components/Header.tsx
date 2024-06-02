@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  CircularProgress,
   HStack,
   IconButton,
   Image,
@@ -34,7 +33,6 @@ const Header = () => {
 
   const handleButtonClick = () => {
     fileInput.current?.click();
-    console.log("Button clicked");
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
