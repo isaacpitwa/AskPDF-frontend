@@ -2,9 +2,11 @@ import React, { createContext, useState } from "react";
 
 // State to hold the chat messages and file selection
 const initialChatState = {
-  messages: [] as { text: string, isQuestion: boolean }[],
+  messages: [] as { text: string; isQuestion: boolean }[],
   isFileSelected: false,
-  addMessage: (message: string,isQuestion: boolean) => {},
+  isUploadingFile: false,
+  addMessage: (message: string, isQuestion: boolean) => {},
+  addFile: (file: File) => {},
 };
 
 export const ChatContext = createContext(initialChatState);
@@ -18,19 +20,34 @@ const ChatProvider: React.FC<{ children: React.ReactNode }> = ({
   const addMessage = (message: string, isQuestion: boolean) => {
     setChatState((prevState) => ({
       ...prevState,
-      messages: [...prevState.messages, { text: message,isQuestion }],
+      messages: [...prevState.messages, { text: message, isQuestion }],
     }));
     console.log("Message added: ", message);
   };
 
+  const addFile = (file: File) => {
+    setChatState((prevState) => ({
+      ...prevState,
+      isUploadingFile: true,
+    }));
+    // TODO:: updload file to API
+    setTimeout(() => {
+      setChatState((prevState) => ({
+        ...prevState,
+        isFileSelected: true,
+        isUploadingFile: false,
+      }));
+      console.log("File added: ", file.name);
+    }, 4000);
+  };
 
   // Provide the chat context value to the children components
   return (
     <ChatContext.Provider
       value={{
-        messages: chatState.messages as { text: string, isQuestion:boolean }[],
-        isFileSelected: chatState.isFileSelected,
+        ...chatState,
         addMessage,
+        addFile,
       }}
     >
       {children}
