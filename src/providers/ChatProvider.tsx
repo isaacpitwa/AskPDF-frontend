@@ -29,7 +29,6 @@ const ChatProvider: React.FC<{ children: React.ReactNode }> = ({
 
     // TODO:: send message to API
     if (isQuestion) {
-      console.log("PDF ID: ", chatState.pdf_id)
       ApiService.ask(message,chatState.pdf_id).then((response)=>{
         setChatState((prevState) => ({
           ...prevState,

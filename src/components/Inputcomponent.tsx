@@ -31,7 +31,7 @@ const Inputcomponent = () => {
           value={inputValue}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
-          disabled={!isFileSelected}
+          disabled={!isFileSelected || isFectchingAnswer}
         />
         <InputRightElement>
           {isFectchingAnswer ? <Spinner size="sm" color="#2DA958"/>:<BiSend size={21} color="#ACACAE" />}

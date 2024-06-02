@@ -10,9 +10,9 @@ function App() {
   const { messages } = useContext(ChatContext);
   return (
     <ChakraProvider>
-        <Box h="100vh" position="relative">
+        <Box h="100vh" position="relative" overflow='hidden'>
           <Header />
-          <Box p={8}>
+          <Box p={8} overflowY="auto" maxHeight="90vh">
             {messages.map((message, index) => (
               <ChatMessage
                 key={index}
